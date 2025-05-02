@@ -1300,7 +1300,7 @@ ResourcePtr RendererDX11::LoadTexture( std::wstring filename, bool sRGB )
 	}
 	else
 	{
-		hr = DirectX::CreateWICTextureFromFileEx(
+		/*hr = DirectX::CreateWICTextureFromFileEx(
 			m_pDevice.Get(),
 			pImmPipeline->m_pContext.Get(),
 			filename.c_str(),
@@ -1311,7 +1311,19 @@ ResourcePtr RendererDX11::LoadTexture( std::wstring filename, bool sRGB )
 			0,
 			sRGB,
 			pResource.GetAddressOf(),
-			0 );
+			0 );*/
+		hr = DirectX::CreateWICTextureFromFile(
+			m_pDevice.Get(),
+			//pImmPipeline->m_pContext.Get(),
+			filename.c_str(),
+			/*0,
+			0,
+			0,
+			0,
+			DirectX::DX11::WIC_LOADER_SRGB_DEFAULT,*/
+			pResource.GetAddressOf(),
+			nullptr
+		);
 	}
 
 
