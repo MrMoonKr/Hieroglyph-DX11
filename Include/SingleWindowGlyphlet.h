@@ -44,7 +44,7 @@ namespace Glyph3
 		virtual void Shutdown();
 		virtual bool HandleEvent( EventPtr pEvent );
 
-		EventManager			EvtManager;
+		EventManager			m_EvtManager;
 
 	public:
 

@@ -59,47 +59,49 @@
 //--------------------------------------------------------------------------------
 namespace Glyph3
 {
-	class Application : public IEventListener, public IWindowProc
-	{
-	public:
-		Application();
-		virtual ~Application();
+class Application : public IEventListener , public IWindowProc
+{
+public:
+    static Application* GetApplication();
+protected:
+    // Application pointer to ensure single instance
+    static Application* ms_pApplication;
 
-		// Initialization functions
-		static Application* GetApplication( );
+public:
+    Application();
+    virtual ~Application();
 
-		// Overloadable functions for end user
-		virtual bool ConfigureCommandLine( LPSTR lpcmdline );
-		virtual bool ConfigureEngineComponents() = 0;
-		virtual void ShutdownEngineComponents() = 0;
-		virtual void Initialize() = 0;
-		virtual void Update() = 0;
-		virtual void Shutdown() = 0;
-		virtual void MessageLoop();
-		virtual LRESULT WindowProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam); 
-        virtual void BeforeRegisterWindowClass(WNDCLASSEX &wc);
+    virtual bool        ConfigureCommandLine( LPSTR lpcmdline );
 
-		virtual bool HandleEvent( EventPtr pEvent );
+    virtual bool        ConfigureEngineComponents() = 0;   // 애플리케이션에 필요한 엔진 컴포넌트 설정
+    virtual void        ShutdownEngineComponents() = 0;    // 애플리케이션에 필요한 엔진 컴포넌트 종료
 
-		// Request an exit from windows
-		void RequestTermination();
-		virtual void TakeScreenShot() = 0;
+    virtual void        Initialize() = 0;                  // 애플리케이션 초기화
+    virtual void        Update() = 0;                      // 애플리케이션 업데이트 및 렌더링
+    virtual void        Shutdown() = 0;                    // 애플리케이션 종료
 
-		// Helpers
-		Timer* m_pTimer;
+    virtual void        MessageLoop();
+    virtual LRESULT     WindowProc( HWND hwnd , UINT msg , WPARAM wparam , LPARAM lparam );
+    virtual void        BeforeRegisterWindowClass( WNDCLASSEX& wc );
 
-		// Engine Components
-		EventManager EvtManager;
+    virtual bool        HandleEvent( EventPtr pEvent );
 
-		Scene* m_pScene;
+    void                RequestTermination();
+    virtual void        TakeScreenShot() = 0;
 
-		bool m_bSaveScreenshot;
-		bool m_bLoop;
+public:
+    // Helpers
+    Timer*              m_pTimer;
 
-	protected:
-		// Application pointer to ensure single instance
-		static Application* ms_pApplication;
-	};
+    // Engine Compon    ents
+    EventManager        m_EvtManager;
+
+    Scene*              m_pScene;
+
+    bool                m_bSaveScreenshot;
+    bool                m_bLoop;
+
+};
 };
 //--------------------------------------------------------------------------------
 #endif // Application_h

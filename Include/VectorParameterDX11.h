@@ -20,6 +20,9 @@
 //--------------------------------------------------------------------------------
 namespace Glyph3
 {
+	/// <summary>
+	/// float4 유형의 셰이더 매게변수.  
+	/// </summary>
 	class VectorParameterDX11 : public RenderParameterDX11
 	{
 	public:

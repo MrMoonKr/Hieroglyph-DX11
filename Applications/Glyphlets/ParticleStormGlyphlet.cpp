@@ -66,7 +66,7 @@ void ParticleStormGlyphlet::Update( float dt )
 	// Send an event to everyone that a new frame has started.  This will be used
 	// in later examples for using the material system with render views.
 
-	EvtManager.ProcessEvent( EvtFrameStartPtr( new EvtFrameStart( dt ) ) );
+	m_EvtManager.ProcessEvent( EvtFrameStartPtr( new EvtFrameStart( dt ) ) );
 
 
 	// After the application specific update, call the base class update method

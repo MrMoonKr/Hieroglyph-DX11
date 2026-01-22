@@ -41,8 +41,10 @@ ShaderReflectionDX11* ShaderReflectionFactoryDX11::GenerateReflection( ShaderDX1
 	ShaderReflectionDX11* pReflection = new ShaderReflectionDX11();
 
 	ComPtr<ID3D11ShaderReflection> pReflector;
-	HRESULT hr = D3DReflect( shader.m_pCompiledShader->GetBufferPointer(), shader.m_pCompiledShader->GetBufferSize(),
-		IID_ID3D11ShaderReflection, reinterpret_cast<void**>( pReflector.GetAddressOf() ));
+	HRESULT hr = D3DReflect( shader.m_pCompiledShader->GetBufferPointer(), 
+		shader.m_pCompiledShader->GetBufferSize(),
+		IID_ID3D11ShaderReflection, 
+		reinterpret_cast<void**>( pReflector.GetAddressOf() ));
 
 	if ( FAILED( hr ) )
 	{

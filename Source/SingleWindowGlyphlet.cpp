@@ -19,7 +19,7 @@ using namespace Glyph3;
 //--------------------------------------------------------------------------------
 SingleWindowGlyphlet::SingleWindowGlyphlet()
 {
-	SetEventManager( &EvtManager );
+	SetEventManager( &m_EvtManager );
 
 	RequestEvent( eEVENT::SYSTEM_KEYBOARD_KEYDOWN );
 	RequestEvent( eEVENT::SYSTEM_KEYBOARD_KEYUP );
@@ -39,7 +39,7 @@ SingleWindowGlyphlet::SingleWindowGlyphlet()
 	m_pRenderView = pPerspectiveView;
 
 	m_pCamera = new FirstPersonCamera();
-	m_pCamera->SetEventManager( &EvtManager );
+	m_pCamera->SetEventManager( &m_EvtManager );
 	
 	m_pCamera->Spatial().SetRotation( Vector3f( 0.0f, 0.0f, 0.0f ) );
 	m_pCamera->Spatial().SetTranslation( Vector3f( 0.0f, 10.0f, -20.0f ) );

@@ -23,7 +23,9 @@
 #include "SwapChainConfigDX11.h"
 #include "Texture2dConfigDX11.h"
 
+//--------------------------------------------------------------------------------
 using namespace Glyph3;
+
 //--------------------------------------------------------------------------------
 App AppInstance; // Provides an instance of the application
 //--------------------------------------------------------------------------------
@@ -32,7 +34,9 @@ App AppInstance; // Provides an instance of the application
 //--------------------------------------------------------------------------------
 App::App()
 {
+	//
 }
+
 //--------------------------------------------------------------------------------
 bool App::ConfigureEngineComponents()
 {
@@ -43,7 +47,7 @@ bool App::ConfigureEngineComponents()
 
 	// Set the render window parameters and initialize the window
 	m_pWindow = new Win32RenderWindow();
-	m_pWindow->SetPosition( 25, 25 );
+	//m_pWindow->SetPosition( 25, 25 );
 	m_pWindow->SetSize( width, height );
 	m_pWindow->SetCaption( GetName() );
 	m_pWindow->Initialize( this );
@@ -54,7 +58,7 @@ bool App::ConfigureEngineComponents()
 
 	m_pRenderer11 = new RendererDX11();
 
-	if ( !m_pRenderer11->Initialize( D3D_DRIVER_TYPE_HARDWARE, D3D_FEATURE_LEVEL_10_0 ) )
+	if ( !m_pRenderer11->Initialize( D3D_DRIVER_TYPE_HARDWARE, D3D_FEATURE_LEVEL_11_0 ) )
 	{
 		Log::Get().Write( L"Could not create hardware device, trying to create the reference device..." );
 
@@ -149,7 +153,7 @@ void App::Update()
 	// Send an event to everyone that a new frame has started.  This will be used
 	// in later examples for using the material system with render views.
 
-	EvtManager.ProcessEvent( EvtFrameStartPtr( new EvtFrameStart( m_pTimer->Elapsed() ) ) );
+	m_EvtManager.ProcessEvent( EvtFrameStartPtr( new EvtFrameStart( m_pTimer->Elapsed() ) ) );
 
 	// Clear the window to a time varying color.
 

@@ -12,33 +12,35 @@
 #include "Win32RenderWindow.h"
 #include "RendererDX11.h"
 
+//--------------------------------------------------------------------------------
 using namespace Glyph3;
 
+//--------------------------------------------------------------------------------
 class App : public Application
 {
+public:
+    App();
 
 public:
-	App();
-	
-public:
-	virtual void Initialize();
-	virtual void Update();
-	virtual void Shutdown();
 
-	virtual bool ConfigureEngineComponents();
-	virtual void ShutdownEngineComponents();
+    virtual bool            ConfigureEngineComponents();
+    virtual void            ShutdownEngineComponents();
 
-	virtual void TakeScreenShot();
+    virtual void            Initialize();
+    virtual void            Update();
+    virtual void            Shutdown();
 
-	virtual bool HandleEvent( EventPtr pEvent );
-	virtual std::wstring GetName( );
+    virtual void            TakeScreenShot();
+
+    virtual bool            HandleEvent( EventPtr pEvent );
+    virtual std::wstring    GetName();
 
 protected:
 
-	RendererDX11*			m_pRenderer11;
-	Win32RenderWindow*		m_pWindow;
-	
-	int						m_iSwapChain;
-	ResourcePtr				m_RenderTarget;
-	ResourcePtr				m_DepthTarget;
+    Win32RenderWindow*      m_pWindow;
+    RendererDX11*           m_pRenderer11;
+
+    int                     m_iSwapChain;
+    ResourcePtr             m_RenderTarget;
+    ResourcePtr             m_DepthTarget;
 };

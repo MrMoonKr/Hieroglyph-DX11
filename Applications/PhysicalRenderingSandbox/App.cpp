@@ -124,7 +124,7 @@ void App::Update()
 
 	m_pTimer->Update();
 
-	EvtManager.ProcessEvent( EvtFrameStartPtr( new EvtFrameStart( m_pTimer->Elapsed() ) ) );
+	m_EvtManager.ProcessEvent( EvtFrameStartPtr( new EvtFrameStart( m_pTimer->Elapsed() ) ) );
 
 
 	// Print a message to show the framerate and sample name.

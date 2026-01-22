@@ -231,7 +231,7 @@ void App::Update()
 
 	m_pTimer->Update();
 
-	EvtManager.ProcessEvent( EvtFrameStartPtr( new EvtFrameStart( m_pTimer->Elapsed() ) ) );
+	m_EvtManager.ProcessEvent( EvtFrameStartPtr( new EvtFrameStart( m_pTimer->Elapsed() ) ) );
 
 
 	// Do some immediate rendering here.  These vertex data are applied in object

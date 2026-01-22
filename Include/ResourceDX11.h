@@ -24,24 +24,27 @@
 //--------------------------------------------------------------------------------
 namespace Glyph3
 {
-	class ResourceDX11
-	{
-	public:
-		ResourceDX11();
+    /// <summary>
+    /// DX11 리소스의 기본 인터페이스.  
+    /// 버퍼 또는 텍스처 유형의 리소스를 대표하는 추상 클래스.  
+    /// </summary>
+    class ResourceDX11
+    {
+    public:
+        ResourceDX11();
+        virtual ~ResourceDX11();
 
-		virtual ~ResourceDX11();
+        virtual ResourceType            GetType() = 0;
+        virtual ID3D11Resource*         GetResource() = 0;
 
-		virtual ResourceType				GetType() = 0;
-		virtual ID3D11Resource*				GetResource() = 0;
+        virtual UINT                    GetEvictionPriority() = 0;
+        virtual void                    SetEvictionPriority( UINT EvictionPriority ) = 0;
 
-		virtual UINT						GetEvictionPriority() = 0;
-		virtual void						SetEvictionPriority( UINT EvictionPriority ) = 0;
+        unsigned short                  GetInnerID();
 
-		unsigned short						GetInnerID();
-
-		static unsigned short				s_usResourceUID;
-		unsigned short						m_usInnerID;
-	};
+        static unsigned short           s_usResourceUID;    // 리소스 ID 발급용
+        unsigned short                  m_usInnerID;        // 리소스 ID
+    };
 
 };
 //--------------------------------------------------------------------------------

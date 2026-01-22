@@ -162,7 +162,7 @@ void App::Update()
 
 	m_pTimer->Update();
 
-	EvtManager.ProcessEvent( EvtFrameStartPtr( new EvtFrameStart( m_pTimer->Elapsed() ) ) );
+	m_EvtManager.ProcessEvent( EvtFrameStartPtr( new EvtFrameStart( m_pTimer->Elapsed() ) ) );
 
 	m_pActor1->m_pGlyphlet->Update( m_pTimer->Elapsed() * 1.0f );
 	m_pActor2->m_pGlyphlet->Update( m_pTimer->Elapsed() * 0.5f );
@@ -233,10 +233,10 @@ bool App::HandleEvent( EventPtr pEvent )
 	bool bHandled = false;
 
 	if ( m_uiInputTarget == 2 ) {
-		bHandled = m_pActor1->m_pGlyphlet->EvtManager.ProcessEvent( pEvent );
+		bHandled = m_pActor1->m_pGlyphlet->m_EvtManager.ProcessEvent( pEvent );
 	}
 	else if ( m_uiInputTarget == 3 ) {
-		bHandled = m_pActor2->m_pGlyphlet->EvtManager.ProcessEvent( pEvent );
+		bHandled = m_pActor2->m_pGlyphlet->m_EvtManager.ProcessEvent( pEvent );
 	}
 
 	// Call the parent class's event handler if we haven't handled the event.

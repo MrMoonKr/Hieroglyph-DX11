@@ -10,6 +10,7 @@
 
 //--------------------------------------------------------------------------------
 #include "PCH.h"
+
 #include "Application.h"
 #include "ScriptManager.h"
 
@@ -20,55 +21,59 @@
 //--------------------------------------------------------------------------------
 using namespace Glyph3;
 
-int WINAPI WinMain(	HINSTANCE h_Inst, HINSTANCE h_PrevInst,	LPSTR lpcmdline, int ncmdshow)
+/// <summary>
+/// 애플리케이션의 시작점입니다.  
+/// </summary>
+int WINAPI WinMain( _In_        HINSTANCE   h_Inst      ,
+                    _In_opt_    HINSTANCE   h_PrevInst  ,
+                    _In_        LPSTR       lpcmdline   ,
+                    _In_        int         ncmdshow    )
 {
-	// The instance of the app must already be created by now
-
-	Application* m_pApp = Application::GetApplication();
-	if (!m_pApp)
-	{
-		Log::Get().Write( L"There was no instance of the application." );
-		return(-1);
-	}
-
-	// Give the application a chance to process the command line arguments.  The
-	// default behavior is to simply return without doing anything on the parameters,
-	// but a customized application can do as they wish with the command line.
-
-	if ( !m_pApp->ConfigureCommandLine( lpcmdline ) )
-	{
-        Log::Get().Write( L"Failed to process the command line arguments!" );
-        return(-1);
+    Application* m_pApp = Application::GetApplication() ;   // The instance of the app must already be created by now
+    if ( !m_pApp )
+    {
+        Log::Get().Write( L"There was no instance of the application." );
+        return( -1 );
     }
 
-	// Call the application's ConfigureEngineComponent method.  This will load
-	// and create each of the engine components that are needed by the application,
-	// as well as the windows that are needed for interacting with the user.
+    // Give the application a chance to process the command line arguments.  The
+    // default behavior is to simply return without doing anything on the parameters,
+    // but a customized application can do as they wish with the command line.
 
-	if ( !m_pApp->ConfigureEngineComponents() )
-	{
-		m_pApp->ShutdownEngineComponents();
-		return( false );
-	}
+    if ( !m_pApp->ConfigureCommandLine( lpcmdline ) )
+    {
+        Log::Get().Write( L"Failed to process the command line arguments!" );
+        return( -1 );
+    }
 
+    // Call the application's ConfigureEngineComponent method.  This will load
+    // and create each of the engine components that are needed by the application,
+    // as well as the windows that are needed for interacting with the user.
 
-	// Call the application initialize function - this function
-	// will be overloaded specifically for each of the applications.
-	
-	m_pApp->Initialize();
-
-    
-	// Call the application message loop function - this function
-	// could be overloaded specifically for each the applications.
-
-	m_pApp->MessageLoop();
+    if ( !m_pApp->ConfigureEngineComponents() )
+    {
+        m_pApp->ShutdownEngineComponents();
+        return( false );
+    }
 
 
-	// Call the overloaded application shutdown method.
+    // Call the application initialize function - this function
+    // will be overloaded specifically for each of the applications.
 
-	m_pApp->Shutdown();
-	m_pApp->ShutdownEngineComponents();
+    m_pApp->Initialize();
 
-	return( true );
+
+    // Call the application message loop function - this function
+    // could be overloaded specifically for each the applications.
+
+    m_pApp->MessageLoop();
+
+
+    // Call the overloaded application shutdown method.
+
+    m_pApp->Shutdown();
+    m_pApp->ShutdownEngineComponents();
+
+    return( true );
 }
 //--------------------------------------------------------------------------------

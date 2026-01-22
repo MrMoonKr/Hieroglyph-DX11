@@ -100,7 +100,9 @@ void ShaderReflectionDX11::InitializeConstantBuffers( IParameterManager* pParamM
 						constBuffer->AddMapping( mapping );
 					}
 				}
-			} else {
+			} 
+			else
+			{
 				
 				// If we get here, that means we are trying to initialize a constant buffer
 				// that has already been set as a parameter before.  We need to compare if this

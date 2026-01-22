@@ -133,9 +133,12 @@ D3D_FEATURE_LEVEL RendererDX11::GetAvailableFeatureLevel( D3D_DRIVER_TYPE Driver
 	// without creating the device.  The application can then do whatever it needs
 	// to for a given feature level.
 
-	if ( m_pDevice ) {
+	if ( m_pDevice ) 
+	{
 		FeatureLevel = m_pDevice->GetFeatureLevel();
-	} else {
+	} 
+	else 
+	{
 		hr = D3D11CreateDevice(
 			nullptr,
 			DriverType,
@@ -191,7 +194,6 @@ UINT64 RendererDX11::GetAvailableVideoMemory()
 //--------------------------------------------------------------------------------
 bool RendererDX11::Initialize( D3D_DRIVER_TYPE DriverType, D3D_FEATURE_LEVEL FeatureLevel )
 {
-
     HRESULT hr = S_OK;
 
 	// Create a factory to enumerate all of the hardware in the system.
