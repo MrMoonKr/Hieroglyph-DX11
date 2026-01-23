@@ -17,33 +17,35 @@
 //--------------------------------------------------------------------------------
 #ifndef ViewPerspective_h
 #define ViewPerspective_h
+
 //--------------------------------------------------------------------------------
 #include "SceneRenderTask.h"
+
 //--------------------------------------------------------------------------------
 namespace Glyph3
 {
-	class Entity3D;
+    class Entity3D;
 
-	class ViewPerspective : public SceneRenderTask
-	{
-	public:
-		ViewPerspective( RendererDX11& Renderer, ResourcePtr RenderTarget, ResourcePtr DepthTarget = 0 );
-		virtual ~ViewPerspective();
+    class ViewPerspective : public SceneRenderTask
+    {
+    public:
+        ViewPerspective( RendererDX11& Renderer , ResourcePtr RenderTarget , ResourcePtr DepthTarget = 0 );
+        virtual ~ViewPerspective();
 
-		virtual void Update( float fTime );
-		virtual void QueuePreTasks( RendererDX11* pRenderer );
-		virtual void ExecuteTask( PipelineManagerDX11* pPipelineManager, IParameterManager* pParamManager );
-		virtual void Resize( UINT width, UINT height );
+        virtual void            Update( float fTime );
+        virtual void            QueuePreTasks( RendererDX11* pRenderer );
+        virtual void            ExecuteTask( PipelineManagerDX11* pPipelineManager , IParameterManager* pParamManager );
+        virtual void            Resize( UINT width , UINT height );
 
-		void SetRenderTargets( ResourcePtr RenderTarget, ResourcePtr DepthTarget = nullptr );
+        void                    SetRenderTargets( ResourcePtr RenderTarget , ResourcePtr DepthTarget = nullptr );
 
-		virtual std::wstring GetName();
+        virtual std::wstring    GetName();
 
-	protected:
+    protected:
 
-		ResourcePtr		m_RenderTarget;
-		ResourcePtr		m_DepthTarget;
-	};
+        ResourcePtr             m_RenderTarget;
+        ResourcePtr             m_DepthTarget;
+    };
 };
 //--------------------------------------------------------------------------------
 #endif // ViewPerspective_h

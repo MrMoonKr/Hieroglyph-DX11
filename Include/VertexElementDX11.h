@@ -30,55 +30,55 @@
 //--------------------------------------------------------------------------------
 namespace Glyph3
 {
-	class VertexElementDX11
-	{
+    /// <summary>
+    /// 정점을 구성하는 하나의 요소를 나타내는 클래스.  
+    /// </summary>
+    class VertexElementDX11
+    {
+    public:
+        static std::string          PositionSemantic;
+        static std::string          NormalSemantic;
+        static std::string          TexCoordSemantic;
+        static std::string          BoneIDSemantic;
+        static std::string          BoneWeightSemantic;
+        static std::string          TangentSemantic;
 
     public:
+        VertexElementDX11( int tuple , int elementCount );
+        ~VertexElementDX11();
 
-        // Standard semantic names
-        static std::string PositionSemantic;
-        static std::string NormalSemantic;
-        static std::string TexCoordSemantic;
-        static std::string BoneIDSemantic;
-		static std::string BoneWeightSemantic;
-        static std::string TangentSemantic;
+        int                         SizeInBytes();
+        int                         Count();
+        int                         Tuple();
 
-	public:
-		VertexElementDX11( int tuple, int elementCount );
-		~VertexElementDX11( );
-		
-		int				SizeInBytes();
-		int				Count();
-		int				Tuple();
+        void*                       GetPtr( int i );
 
-		void*			GetPtr( int i );
+        float*                      Get1f( int i );
+        Vector2f*                   Get2f( int i );
+        Vector3f*                   Get3f( int i );
+        Vector4f*                   Get4f( int i );
 
-		float*			Get1f( int i );
-		Vector2f*		Get2f( int i );
-		Vector3f*		Get3f( int i );
-		Vector4f*		Get4f( int i );
+        int*                        Get1i( int i );
 
-		int*			Get1i( int i );
+        unsigned int*               Get1ui( int i );
 
-		unsigned int*	Get1ui( int i );
+        float* operator[]( int i );
+        const float* operator[]( int i ) const;
 
-		float*					operator[]( int i );
-		const float*			operator[]( int i ) const;
+        std::string                 m_SemanticName;
+        UINT                        m_uiSemanticIndex;
+        DXGI_FORMAT                 m_Format;
+        UINT                        m_uiInputSlot;
+        UINT                        m_uiAlignedByteOffset;
+        D3D11_INPUT_CLASSIFICATION  m_InputSlotClass;
+        UINT                        m_uiInstanceDataStepRate;
 
-		std::string						m_SemanticName;
-		UINT							m_uiSemanticIndex;
-		DXGI_FORMAT						m_Format;
-		UINT							m_uiInputSlot;
-		UINT							m_uiAlignedByteOffset;
-		D3D11_INPUT_CLASSIFICATION		m_InputSlotClass;
-		UINT							m_uiInstanceDataStepRate;
+    protected:
+        VertexElementDX11();
 
-	protected:
-		VertexElementDX11();
-
-		float*							m_pfData;
-		int								m_iTuple;
-		int								m_iCount;
-	};
+        float*                      m_pfData;
+        int                         m_iTuple;
+        int                         m_iCount;
+    };
 };
 #endif // VertexElementDX11_h

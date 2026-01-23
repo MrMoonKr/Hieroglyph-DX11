@@ -14,28 +14,32 @@
 //--------------------------------------------------------------------------------
 #ifndef VertexBufferDX11_h
 #define VertexBufferDX11_h
+
 //--------------------------------------------------------------------------------
 #include "BufferDX11.h"
+
+using Microsoft::WRL::ComPtr;
+
 //--------------------------------------------------------------------------------
 namespace Glyph3
 {
-	class VertexBufferDX11 : public BufferDX11
-	{
-	public:
-		VertexBufferDX11( Microsoft::WRL::ComPtr<ID3D11Buffer> pBuffer );
-		virtual ~VertexBufferDX11();
+    class VertexBufferDX11 : public BufferDX11
+    {
+    public:
+        VertexBufferDX11( ComPtr<ID3D11Buffer> pBuffer );
+        virtual ~VertexBufferDX11();
 
-		virtual ResourceType				GetType();
+        virtual ResourceType    GetType();
 
-		void						SetVertexSize( int size );
-		void						SetVertexCount( int count );
+        void                    SetVertexSize( int size );
+        void                    SetVertexCount( int count );
 
-	protected:
-		int							m_iVertexSize;
-		int							m_iVertexCount;
+    protected:
+        int                     m_iVertexSize;
+        int                     m_iVertexCount;
 
-		friend RendererDX11;
-	};
+        friend RendererDX11;
+    };
 };
 //--------------------------------------------------------------------------------
 #endif // VertexBufferDX11_h

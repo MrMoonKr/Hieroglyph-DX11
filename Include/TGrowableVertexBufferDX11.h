@@ -20,23 +20,26 @@
 //--------------------------------------------------------------------------------
 namespace Glyph3
 {
-	template <class T>
-	class TGrowableVertexBufferDX11 : public TGrowableBufferDX11<T>
-	{
-	public:
-		TGrowableVertexBufferDX11();
-		virtual ~TGrowableVertexBufferDX11();
+    /// <summary>
+    /// 정점 배열을 관리하는 템플릿 클래스.  
+    /// </summary>
+    template <class T>
+    class TGrowableVertexBufferDX11 : public TGrowableBufferDX11<T>
+    {
+    public:
+        TGrowableVertexBufferDX11();
+        virtual ~TGrowableVertexBufferDX11();
 
-		virtual void UploadData( PipelineManagerDX11* pPipeline );
-		virtual ResourcePtr GetBuffer();
+        virtual void            UploadData( PipelineManagerDX11* pPipeline );
+        virtual ResourcePtr     GetBuffer();
 
-	protected:
-        virtual void CreateResource( unsigned int elements );
-        virtual void DeleteResource( );
+    protected:
+        virtual void            CreateResource( unsigned int elements );
+        virtual void            DeleteResource();
 
-	private:
-		ResourcePtr m_VB;
-	};
+    private:
+        ResourcePtr             m_VB;
+    };
 
 #include "TGrowableVertexBufferDX11.inl"
 };

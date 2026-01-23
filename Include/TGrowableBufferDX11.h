@@ -15,67 +15,73 @@
 //--------------------------------------------------------------------------------
 #ifndef TGrowableBufferDX11_h
 #define TGrowableBufferDX11_h
+
 //--------------------------------------------------------------------------------
 #include "PipelineManagerDX11.h"
 #include "BufferConfigDX11.h"
+
 //--------------------------------------------------------------------------------
 namespace Glyph3
 {
-	template <class T>
-	class TGrowableBufferDX11
-	{
-	public:
-		TGrowableBufferDX11();
-		virtual ~TGrowableBufferDX11();
+    /// <summary>
+    /// 애플리케이션에서 사용하는 데이터 배열 템플릿 클래스.  
+    /// GPU 쪽 리소스 버퍼와 동기화되는 시스템 메모리 쪽 배열을 관리.
+    /// </summary>
+    template <class T>
+    class TGrowableBufferDX11
+    {
+    public:
+        TGrowableBufferDX11();
+        virtual ~TGrowableBufferDX11();
 
-		// Setting the size of the buffer will create a new array, and 
-		// copy as much of the existing array as possible.
+        // Setting the size of the buffer will create a new array, and 
+        // copy as much of the existing array as possible.
 
-		void SetMaxElementCount( unsigned int max );
-		
-		unsigned int GetMaxElementCount();
-		unsigned int GetElementCount();
+        void                    SetMaxElementCount( unsigned int max );
 
-		
-		// Elements are added one at a time, with a template method.
+        unsigned int            GetMaxElementCount();
+        unsigned int            GetElementCount();
 
-		void AddElement( const T& element );
-		
 
-		// These methods allow the user to either upload the data to
-		// the buffer resource, or alternatively they can 'reset' the 
-		// data, which essentially just resets the element counters
-		// (i.e. - no data is actually cleared from the system memory
-		// array).  Each subclass is responsible for properly implementing
+        // Elements are added one at a time, with a template method.
+
+        void                    AddElement( const T& element );
+
+
+        // These methods allow the user to either upload the data to
+        // the buffer resource, or alternatively they can 'reset' the 
+        // data, which essentially just resets the element counters
+        // (i.e. - no data is actually cleared from the system memory
+        // array).  Each subclass is responsible for properly implementing
         // the upload method.
 
-		virtual void UploadData( PipelineManagerDX11* pPipeline ) = 0;
-		void ResetData();
+        virtual void            UploadData( PipelineManagerDX11* pPipeline ) = 0;
+        void                    ResetData();
 
-		virtual ResourcePtr GetBuffer() = 0;
+        virtual ResourcePtr     GetBuffer() = 0;
 
         // These methods are used internally by the growable buffer to allocate 
-		// and deallocate the resources to be used.  This lets each subclass
-		// determine the type and number of resources to use, giving very good 
-		// future flexibility.  Because we leave this flexible for the subclasses
+        // and deallocate the resources to be used.  This lets each subclass
+        // determine the type and number of resources to use, giving very good 
+        // future flexibility.  Because we leave this flexible for the subclasses
         // to implement, we also include the GetBuffer method into the required
         // methods to implement.
 
-	protected:
-        virtual void CreateResource( unsigned int elements ) = 0;
-        virtual void DeleteResource( ) = 0;
+    protected:
+        virtual void            CreateResource( unsigned int elements ) = 0;
+        virtual void            DeleteResource() = 0;
 
-		void EnsureCapacity( );
+        void                    EnsureCapacity();
 
-		// The sizes
-		unsigned int m_uiMaxElementCount;
-		unsigned int m_uiElementCount;
+        // The sizes
+        unsigned int            m_uiMaxElementCount;
+        unsigned int            m_uiElementCount;
 
-		bool m_bUploadNeeded;
+        bool                    m_bUploadNeeded;
 
-		// The pointer to our array of vertex data
-		T* m_pDataArray;
-	};
+        // The pointer to our array of vertex data
+        T*                      m_pDataArray;
+    };
 
 #include "TGrowableBufferDX11.inl"
 };

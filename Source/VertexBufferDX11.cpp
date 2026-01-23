@@ -14,7 +14,7 @@
 //--------------------------------------------------------------------------------
 using namespace Glyph3;
 //--------------------------------------------------------------------------------
-VertexBufferDX11::VertexBufferDX11( Microsoft::WRL::ComPtr<ID3D11Buffer> pBuffer )
+VertexBufferDX11::VertexBufferDX11( ComPtr<ID3D11Buffer> pBuffer )
 {
 	m_pBuffer = pBuffer;
 }

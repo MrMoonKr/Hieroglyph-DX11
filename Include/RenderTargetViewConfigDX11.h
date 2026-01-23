@@ -42,7 +42,7 @@ namespace Glyph3
         D3D11_RENDER_TARGET_VIEW_DESC& GetRTVDesc();
 
     protected:
-        D3D11_RENDER_TARGET_VIEW_DESC 		m_State;
+        D3D11_RENDER_TARGET_VIEW_DESC   m_State;
 
         friend RendererDX11;
     };
