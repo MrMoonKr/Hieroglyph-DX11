@@ -1,3 +1,67 @@
+
+# Practical Rendering & Computation with Direct3D 11
+
+WIP ( Work in Progress )  
+
+- 레거시 프로젝트 위한 DirectX 11 직무 교육( OJT, On the job Training )을 위해서 생성 하였습니다.  
+- DirectX 11의 랩퍼클래스( Wrapper Class )형태로 만들어진 프레임워크( Framework ).  
+- ...  
+- ...  
+
+## 책 관련 링크  
+
+<img src="https://www.oreilly.com/covers/urn:orm:book:9781439869765/300w/" alt="" height="256px" align="right">
+
+- [Practical Rendering & Computation with Direct3D 11 [ 원서 ]](https://www.oreilly.com/library/view/practical-rendering-and/9781439869765/)  
+
+- [실용 Direct3D 11 렌더링 & 계산  [ 번역서 ]](https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=24953980)  
+
+
+## 개발 및 테스트 환경  
+
+- 시스템 ( Computer System )  
+
+  - AMD Ryzen 9 7900X 12-Core Processor
+  - 32G RAM
+  - NVIDIA Geforce RTX 3060 12GB
+  - SSD 2TB
+  - Windows 11 64bit Korean
+
+- 컴파일러 및 링커 ( Compiler , Linker )  
+
+  - [Visual Studio Community 2022](https://visualstudio.microsoft.com/ko/free-developer-offers/)  
+    - C++를 사용한 데스크톱 개발  
+    - C++를 사용한 게임 개발  ( DirectX SDK 포함되어 있음 )
+
+
+## 사용된 패키지 목록
+
+- DirectX SDK ( June 2010 )  
+  - https://www.microsoft.com/en-us/download/details.aspx?id=6812
+  - [DXSDK_Jun10.exe](https://download.microsoft.com/download/a/e/7/ae743f1f-632b-4809-87a9-aa1bb3458e31/DXSDK_Jun10.exe)  
+
+- DXUT11  
+  - https://github.com/microsoft/DirectX-SDK-Samples/tree/main/C%2B%2B/DXUT11  
+
+
+## ...
+
+- ...
+
+- ...
+
+
+
+---
+---
+---
+
+
+
+
+
+
+
 # Hieroglyph 3 Rendering Engine
 
 ## Introduction
