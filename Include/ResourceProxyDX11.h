@@ -29,6 +29,9 @@ namespace Glyph3
     class RenderTargetViewConfigDX11;
     class RendererDX11;
 
+    /// <summary>
+    /// ¸®¼Ò½ººä ·¦ÆÛ Å¬·¡½º.
+    /// </summary>
     class ResourceProxyDX11
     {
     public:

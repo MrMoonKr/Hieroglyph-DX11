@@ -72,16 +72,22 @@ struct WindowProcessor : public IWindowProc
 		return( DefWindowProc( hwnd, msg, wparam, lparam ) );
 	}
 
-	virtual void BeforeRegisterWindowClass(WNDCLASSEX &wc) {};
+	virtual void BeforeRegisterWindowClass(WNDCLASSEX &wc) 
+	{
+	};
 };
 
-int WINAPI WinMain(	HINSTANCE h_Inst, HINSTANCE h_PrevInst,	LPSTR lpcmdline, int ncmdshow)
+/// <summary>
+/// 메인 진입점 함수
+/// </summary>
+int WINAPI WinMain( _In_ HINSTANCE h_Inst, _In_opt_ HINSTANCE h_PrevInst, _In_ LPSTR lpcmdline, _In_ int ncmdshow )
 {
-	WindowProcessor wndproc;
-	Win32RenderWindow window1;
-	window1.SetSize( 320, 240 );
-	window1.SetPosition( 200, 100 );
-	window1.Initialize( &wndproc );
+	WindowProcessor messageHandler;
+
+	Win32RenderWindow mainFrame;
+	mainFrame.SetSize( 320, 240 );
+	mainFrame.SetPosition( 200, 100 );
+	mainFrame.Initialize( &messageHandler );
 	
 	Win32Window window2( 160, 240, L"Some Text" );
 

@@ -392,7 +392,7 @@ bool RendererDX11::Initialize( D3D_DRIVER_TYPE   DriverType   /*= D3D_DRIVER_TYP
         g_aThreadHandles[ i ] = (HANDLE)_beginthreadex( 0 , 0xfffff , _TaskThreadProc , &g_aPayload[ i ] , CREATE_SUSPENDED , 0 );
 
         // Create the synchronization events.
-        g_aBeginEventHandle[ i ] = CreateEvent( 0 , FALSE , FALSE , 0 );
+        g_aBeginEventHandle[ i ] = CreateEvent( 0 , FALSE , FALSE , 0 ); // auto-reset event started non-signaled
         g_aEndEventHandle[ i ] = CreateEvent( 0 , FALSE , FALSE , 0 );
 
         // Start the thread up now that it has a synch object to use.
